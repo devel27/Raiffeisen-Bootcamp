@@ -1,0 +1,9 @@
+---
+- hosts: server
+  gather_facts: true
+  become: true
+  strategy: free
+  become_method: 
+    sudo
+  roles:
+    - package_manager
