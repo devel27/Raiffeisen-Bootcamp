@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: flask-image:latest
+    container_name: flask
+    restart: always
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+    environment:
+      - CONTAINERENV=True
+      - REDIS_HOST=redis 
+      - REDIS_PORT=6379
+    volumes:
+      - ../containerization:/container/
+    networks:
+      - main
+  redis:
+    image: redis
+    container_name: redis
+    networks:
+      - main
+networks:
+  main:
